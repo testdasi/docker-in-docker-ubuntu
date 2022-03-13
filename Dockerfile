@@ -30,13 +30,13 @@ RUN rm -Rf /testdasi \
 RUN /bin/bash /testdasi/scripts-install/install-docker-in-docker-ubuntu.sh
 
 ## debug mode (comment to disable) ##
-RUN /bin/bash /testdasi/scripts-install/install-debug-mode.sh
-ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
+#RUN /bin/bash /testdasi/scripts-install/install-debug-mode.sh
+#ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
 
 ## Final clean up ##
-#RUN rm -Rf /testdasi
+RUN rm -Rf /testdasi
 
 ## VEH ##
-#VOLUME ["/var/lib/docker"]
-#ENTRYPOINT ["tini", "--", "/static-ubuntu/dindu/entrypoint.sh"]
-#HEALTHCHECK CMD /static-ubuntu/dindu/healthcheck.sh
+VOLUME ["/config"]
+ENTRYPOINT ["tini", "--", "/static-ubuntu/dindu/entrypoint.sh"]
+HEALTHCHECK CMD /static-ubuntu/dindu/healthcheck.sh
